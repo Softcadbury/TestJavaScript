@@ -11,7 +11,8 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.20/require.min.js" data-main="./scripts/main.js"></script>
-    	<script src="./scripts/viewmodels/configuration.viewmodel.js"></script>
+    	<script src="./scripts/viewmodels/menu.viewmodel.js"></script>
+		<script src="./scripts/viewmodels/configuration.viewmodel.js"></script>
 		<script src="./scripts/models/account.model.js"></script>
 		<script src="./scripts/models/user.model.js"></script>
 		<script src="./scripts/context.js"></script>
@@ -22,6 +23,11 @@
 	</head>
 	<body>
 		<div id="main" class="container">
+			<ul id="menu" class="nav nav-pills">
+				<li role="presentation"><a href="#">Charts</a></li>
+				<li role="presentation"><a href="#records">Records</a></li>
+				<li role="presentation"><a href="#configuration">Configuration</a></li>
+			</ul>
 			<div id="configuration">
 				<div class="panel panel-primary">
 					<div class="panel-heading">Users</div>
