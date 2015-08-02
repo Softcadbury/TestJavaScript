@@ -1,12 +1,10 @@
 ﻿define('main.viewmodel',
-    ['account.model'],
-    function (accountModel) {
-    	var accounts = ko.observableArray();
-
-        accounts.push(new accountModel('Aaa'));
-        accounts.push(new accountModel('Bbb'));
+    ['context', 'account.model'],
+    function (context, Account) {
+        context.accounts.push(new Account('Aaa'));
+        context.accounts.push(new Account('Bbb'));
 
         return {
-        	accounts: accounts
+        	accounts: context.accounts
         };
     });
