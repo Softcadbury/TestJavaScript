@@ -33,6 +33,11 @@
 			<div id="charts" data-bind="visible: isChartsViewVisible">
 			</div>
 			<div id="records" data-bind="visible: isRecordsViewVisible">
+				<ul class="nav nav-pills nav-stacked" data-bind="foreach: accounts">
+					<li>
+						<a data-bind="text: name"></a>
+					</li>	
+				</ul>
 			</div>
 			<div id="configuration" data-bind="visible: isConfigurationViewVisible">
 				<div class="panel panel-primary">
@@ -51,7 +56,7 @@
 									<div class="form-group">
 										<input data-bind='textInput: newUserName' class="form-control" placeholder="Name">
 									</div>
-									<button data-bind="click: addUser" type="submit" class="btn btn-default">Add</button>
+									<button data-bind="click: addUser" type="submit" class="btn btn-primary">Add</button>
 								</form>
 							</div>
 						</div>
@@ -73,7 +78,7 @@
 									<div class="form-group">
 										<input data-bind='textInput: newAccountName' class="form-control" placeholder="Name">
 									</div>
-									<button data-bind="click: addAccount" type="submit" class="btn btn-default">Add</button>
+									<button data-bind="click: addAccount" type="submit" class="btn btn-primary">Add</button>
 								</form>
 							</div>
 						</div>
