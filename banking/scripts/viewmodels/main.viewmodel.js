@@ -1,7 +1,16 @@
 ﻿define('main.viewmodel',
-    ['context', 'account.model'],
-    function (context, Account) {        
+    ['context', 'user.model', 'account.model'],
+    function (context, User, Account) {
+        var newUserName = ko.observable('');
         var newAccountName = ko.observable('');
+        
+        // Add a user
+        function addUser() {
+            if (newUserName().trim()) {
+                context.users.push(new User(newUserName().trim()));
+                newUserName('');
+            }
+        }
         
         // Add an account
         function addAccount() {
@@ -12,8 +21,11 @@
         }
 
         return {
+        	users: context.users,
         	accounts: context.accounts,
+            newUserName: newUserName,
             newAccountName: newAccountName,
+            addUser: addUser,
             addAccount: addAccount
         };
     });
