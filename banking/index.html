@@ -12,6 +12,8 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.20/require.min.js" data-main="./scripts/main.js"></script>
     	<script src="./scripts/viewmodels/menu.viewmodel.js"></script>
+		<script src="./scripts/viewmodels/charts.viewmodel.js"></script>
+		<script src="./scripts/viewmodels/records.viewmodel.js"></script>
 		<script src="./scripts/viewmodels/configuration.viewmodel.js"></script>
 		<script src="./scripts/models/account.model.js"></script>
 		<script src="./scripts/models/user.model.js"></script>
@@ -28,6 +30,10 @@
 				<li data-bind="css: { active: isRecordsViewVisible }, click: function(){ changeView(isRecordsViewVisible); }"><a href="#">Records</a></li>
 				<li data-bind="css: { active: isConfigurationViewVisible }, click: function(){ changeView(isConfigurationViewVisible); }"><a href="#">Configuration</a></li>
 			</ul>
+			<div id="charts" data-bind="visible: isChartsViewVisible">
+			</div>
+			<div id="records" data-bind="visible: isRecordsViewVisible">
+			</div>
 			<div id="configuration" data-bind="visible: isConfigurationViewVisible">
 				<div class="panel panel-primary">
 					<div class="panel-heading">Users</div>
