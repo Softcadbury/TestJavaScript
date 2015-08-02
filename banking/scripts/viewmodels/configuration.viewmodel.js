@@ -1,4 +1,4 @@
-﻿define('main.viewmodel',
+﻿define('configuration.viewmodel',
     ['context', 'user.model', 'account.model'],
     function (context, User, Account) {
         var newUserName = ko.observable('');

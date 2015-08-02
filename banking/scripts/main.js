@@ -1,4 +1,6 @@
-﻿require(['main.viewmodel'],
-    function (mainViewmodel) {
-        ko.applyBindings(mainViewmodel, document.getElementById('main'));
+﻿require(['configuration.viewmodel'],
+    function (configurationViewmodel) {
+        ko.applyBindings(configurationViewmodel, document.getElementById('configuration'));
+        
+        $('#main').css("display", "block")
     });
