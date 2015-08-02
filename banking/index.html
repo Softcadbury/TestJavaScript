@@ -24,11 +24,11 @@
 	<body>
 		<div id="main" class="container">
 			<ul id="menu" class="nav nav-pills">
-				<li role="presentation"><a href="#">Charts</a></li>
-				<li role="presentation"><a href="#records">Records</a></li>
-				<li role="presentation"><a href="#configuration">Configuration</a></li>
+				<li data-bind="css: { active: isChartsViewVisible }, click: function(){ changeView(isChartsViewVisible); }"><a href="#">Charts</a></li>
+				<li data-bind="css: { active: isRecordsViewVisible }, click: function(){ changeView(isRecordsViewVisible); }"><a href="#">Records</a></li>
+				<li data-bind="css: { active: isConfigurationViewVisible }, click: function(){ changeView(isConfigurationViewVisible); }"><a href="#">Configuration</a></li>
 			</ul>
-			<div id="configuration">
+			<div id="configuration" data-bind="visible: isConfigurationViewVisible">
 				<div class="panel panel-primary">
 					<div class="panel-heading">Users</div>
 					<div class="panel-body">

@@ -21,8 +21,9 @@
         }
 
         return {
-        	users: context.users,
-        	accounts: context.accounts,
+            isConfigurationViewVisible: context.isConfigurationViewVisible,
+            users: context.users,
+            accounts: context.accounts,
             newUserName: newUserName,
             newAccountName: newAccountName,
             addUser: addUser,
