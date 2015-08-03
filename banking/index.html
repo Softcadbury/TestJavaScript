@@ -30,15 +30,31 @@
 				<li data-bind="css: { active: isRecordsViewVisible }, click: function(){ changeView(isRecordsViewVisible); }"><a href="#">Records</a></li>
 				<li data-bind="css: { active: isConfigurationViewVisible }, click: function(){ changeView(isConfigurationViewVisible); }"><a href="#">Configuration</a></li>
 			</ul>
+			<!-- Charts view -->
 			<div id="charts" data-bind="visible: isChartsViewVisible">
 			</div>
+			<!-- Records view -->
 			<div id="records" data-bind="visible: isRecordsViewVisible">
-				<ul class="nav nav-pills nav-stacked" data-bind="foreach: accounts">
-					<li>
-						<a data-bind="text: name"></a>
-					</li>	
-				</ul>
+				<div class="panel panel-primary">
+					<div class="panel-heading">Add records</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-xs-6">
+								<h4>List of accounts</h4>
+								<ul class="nav nav-pills nav-stacked" data-bind="foreach: accounts">
+									<li>
+										<a data-bind="text: name"></a>
+									</li>	
+								</ul>
+							</div>
+							<div class="col-xs-6">
+								todo
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
+			<!-- Configuration view -->
 			<div id="configuration" data-bind="visible: isConfigurationViewVisible">
 				<div class="panel panel-primary">
 					<div class="panel-heading">Users</div>
