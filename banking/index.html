@@ -35,20 +35,24 @@
 			</div>
 			<!-- Records view -->
 			<div id="records" data-bind="visible: isRecordsViewVisible">
-				<div class="panel panel-primary">
-					<div class="panel-heading">Add records</div>
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-xs-6">
-								<h4>List of accounts</h4>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="panel panel-primary">
+							<div class="panel-heading">List of accounts</div>
+							<div class="panel-body">
 								<ul class="nav nav-pills nav-stacked" data-bind="foreach: accounts">
 									<li>
 										<a data-bind="text: name"></a>
 									</li>	
 								</ul>
 							</div>
-							<div class="col-xs-6">
-								todo
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="panel panel-primary">
+							<div class="panel-heading">Selected account records</div>
+							<div class="panel-body">
+
 							</div>
 						</div>
 					</div>
