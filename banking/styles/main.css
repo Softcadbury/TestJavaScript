@@ -10,3 +10,7 @@ body {
 #menu {
 	margin-bottom: 20px;
 }
+
+#records .nav li {
+	cursor: pointer;
+}
