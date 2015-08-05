@@ -10,6 +10,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.20/require.min.js" data-main="./scripts/main.js"></script>
     	<script src="./scripts/viewmodels/menu.viewmodel.js"></script>
 		<script src="./scripts/viewmodels/charts.viewmodel.js"></script>
@@ -36,19 +37,19 @@
 			<!-- Records view -->
 			<div id="records" data-bind="visible: isRecordsViewVisible">
 				<div class="row">
-					<div class="col-xs-6">
+					<div class="col-sm-6">
 						<div class="panel panel-primary">
 							<div class="panel-heading">List of accounts</div>
 							<div class="panel-body">
 								<ul class="nav nav-pills nav-stacked" data-bind="foreach: accounts">
-									<li data-bind="click: function(data){ $parent.selectedAccount(data); }, css: { active: function(data){ return $parent.selectedAccount() === data; } }">
+									<li data-bind="click: $parent.changeSelectedAccount, css: { active: isSelected }">
 										<a data-bind="text: name"></a>
-									</li>	
+									</li>
 								</ul>
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-6" data-bind="with: selectedAccount">
+					<div class="col-sm-6" data-bind="with: selectedAccount">
 						<div class="panel panel-primary">
 							<div class="panel-heading"><span data-bind="text: name"></span> records</div>
 							<div class="panel-body">
@@ -60,7 +61,7 @@
 			<!-- Configuration view -->
 			<div id="configuration" data-bind="visible: isConfigurationViewVisible">
 				<div class="row">
-					<div class="col-xs-6">
+					<div class="col-sm-6">
 						<div class="panel panel-primary">
 							<div class="panel-heading">List of users</div>
 							<div class="panel-body">
@@ -70,7 +71,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-6">
+					<div class="col-sm-6">
 						<div class="panel panel-primary">
 							<div class="panel-heading">User creation</div>
 							<div class="panel-body">
@@ -85,7 +86,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-6">
+					<div class="col-sm-6">
 						<div class="panel panel-primary">
 							<div class="panel-heading">List of accounts</div>
 							<div class="panel-body">
@@ -95,7 +96,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-6">
+					<div class="col-sm-6">
 						<div class="panel panel-primary">
 							<div class="panel-heading">Account creation</div>
 							<div class="panel-body">
