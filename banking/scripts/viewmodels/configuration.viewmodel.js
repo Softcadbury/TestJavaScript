@@ -4,6 +4,9 @@
         var newUserName = ko.observable('');
         var newAccountName = ko.observable('');
         
+         context.accounts.push(new Account('Livret A'));
+         context.accounts.push(new Account('Assurance vie'));
+        
         // Add a user
         function addUser() {
             if (newUserName().trim()) {

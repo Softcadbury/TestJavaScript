@@ -4,8 +4,8 @@ define('context',
     	var accounts = ko.observableArray();
         
         var isChartsViewVisible = ko.observable(false);
-        var isRecordsViewVisible = ko.observable(false);
-        var isConfigurationViewVisible = ko.observable(true);
+        var isRecordsViewVisible = ko.observable(true);
+        var isConfigurationViewVisible = ko.observable(false);
 
         return {
             users: users,
