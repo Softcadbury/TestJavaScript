@@ -14,8 +14,8 @@
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.20/require.min.js" data-main="./scripts/main.js"></script>
     	<script src="./scripts/viewmodels/menu.viewmodel.js"></script>
 		<script src="./scripts/viewmodels/charts.viewmodel.js"></script>
-		<script src="./scripts/viewmodels/records.viewmodel.js"></script>
-		<script src="./scripts/viewmodels/configuration.viewmodel.js"></script>
+		<script src="./scripts/viewmodels/accounts.viewmodel.js"></script>
+		<script src="./scripts/viewmodels/users.viewmodel.js"></script>
 		<script src="./scripts/models/account.model.js"></script>
 		<script src="./scripts/models/user.model.js"></script>
 		<script src="./scripts/context.js"></script>
@@ -26,16 +26,16 @@
 	</head>
 	<body>
 		<div id="main" class="container">
-			<ul id="menu" class="nav nav-pills">
+			<ul id="menu-view" class="nav nav-pills">
 				<li data-bind="css: { active: isChartsViewVisible }, click: function(){ changeView(isChartsViewVisible); }"><a href="#">Charts</a></li>
-				<li data-bind="css: { active: isRecordsViewVisible }, click: function(){ changeView(isRecordsViewVisible); }"><a href="#">Records</a></li>
-				<li data-bind="css: { active: isConfigurationViewVisible }, click: function(){ changeView(isConfigurationViewVisible); }"><a href="#">Configuration</a></li>
+				<li data-bind="css: { active: isAccountsViewVisible }, click: function(){ changeView(isAccountsViewVisible); }"><a href="#">Accounts</a></li>
+				<li data-bind="css: { active: isUsersViewVisible }, click: function(){ changeView(isUsersViewVisible); }"><a href="#">Users</a></li>
 			</ul>
 			<!-- Charts view -->
-			<div id="charts" data-bind="visible: isChartsViewVisible">
+			<div id="charts-view" data-bind="visible: isChartsViewVisible">
 			</div>
-			<!-- Records view -->
-			<div id="records" data-bind="visible: isRecordsViewVisible">
+			<!-- Accounts view -->
+			<div id="accounts-view" data-bind="visible: isAccountsViewVisible">
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="panel panel-primary">
@@ -48,31 +48,44 @@
 								</ul>
 							</div>
 						</div>
+						<div class="panel panel-primary">
+							<div class="panel-heading">Account creation</div>
+							<div class="panel-body">
+								<form>
+									<div class="form-group">
+										<input data-bind='textInput: newAccountName' class="form-control" placeholder="Name">
+									</div>
+									<div class="form-group">
+										<input data-bind='textInput: newInitialAmount' class="form-control" placeholder="Initial amount">
+									</div>
+									<button data-bind="click: addAccount" type="submit" class="btn btn-primary">Add</button>
+								</form>
+							</div>
+						</div>
 					</div>
 					<div class="col-sm-6" data-bind="with: selectedAccount">
 						<div class="panel panel-primary">
-							<div class="panel-heading"><span data-bind="text: name"></span> records</div>
+							<div class="panel-heading"><span data-bind="text: name"></span></div>
 							<div class="panel-body">
-								Initial value: <span data-bind="text: initialValue"></span>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- Configuration view -->
-			<div id="configuration" data-bind="visible: isConfigurationViewVisible">
+			<!-- Users view -->
+			<div id="users-view" data-bind="visible: isUsersViewVisible">
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="panel panel-primary">
 							<div class="panel-heading">List of users</div>
 							<div class="panel-body">
-								<div data-bind="foreach: users">
-									<div data-bind="text: name"></div>
-								</div>
+								<ul class="nav nav-pills nav-stacked" data-bind="foreach: users">
+									<li data-bind="click: $parent.changeSelectedUser, css: { active: isSelected }">
+										<a data-bind="text: name"></a>
+									</li>
+								</ul>
 							</div>
 						</div>
-					</div>
-					<div class="col-sm-6">
 						<div class="panel panel-primary">
 							<div class="panel-heading">User creation</div>
 							<div class="panel-body">
@@ -85,31 +98,10 @@
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-6" data-bind="with: selectedUser">
 						<div class="panel panel-primary">
-							<div class="panel-heading">List of accounts</div>
+							<div class="panel-heading"><span data-bind="text: name"></span></div>
 							<div class="panel-body">
-								<div data-bind="foreach: accounts">
-									<div data-bind="text: name"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="panel panel-primary">
-							<div class="panel-heading">Account creation</div>
-							<div class="panel-body">
-								<form>
-									<div class="form-group">
-										<input data-bind='textInput: newAccountName' class="form-control" placeholder="Name">
-									</div>
-									<div class="form-group">
-										<input data-bind='textInput: newInitialValue' class="form-control" placeholder="Initial value">
-									</div>
-									<button data-bind="click: addAccount" type="submit" class="btn btn-primary">Add</button>
-								</form>
 							</div>
 						</div>
 					</div>

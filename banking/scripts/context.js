@@ -4,14 +4,14 @@ define('context',
     	var accounts = ko.observableArray();
         
         var isChartsViewVisible = ko.observable(false);
-        var isRecordsViewVisible = ko.observable(true);
-        var isConfigurationViewVisible = ko.observable(false);
+        var isAccountsViewVisible = ko.observable(false);
+        var isUsersViewVisible = ko.observable(true);
 
         return {
             users: users,
             accounts: accounts,
             isChartsViewVisible: isChartsViewVisible,
-            isRecordsViewVisible: isRecordsViewVisible,
-            isConfigurationViewVisible: isConfigurationViewVisible
+            isAccountsViewVisible: isAccountsViewVisible,
+            isUsersViewVisible: isUsersViewVisible
         };
     });

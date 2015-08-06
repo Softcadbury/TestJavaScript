@@ -7,10 +7,10 @@ body {
 	display: none;
 }
 
-#menu {
+#menu-view {
 	margin-bottom: 20px;
 }
 
-#records .nav li {
+.nav li {
 	cursor: pointer;
 }

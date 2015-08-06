@@ -3,16 +3,16 @@ define('menu.viewmodel',
     function (context) {
         function changeView(observable) {
             context.isChartsViewVisible(false);
-            context.isRecordsViewVisible(false);
-            context.isConfigurationViewVisible(false);
+            context.isAccountsViewVisible(false);
+            context.isUsersViewVisible(false);
             
             observable(true);
         }
 
         return {
             isChartsViewVisible: context.isChartsViewVisible,
-            isRecordsViewVisible: context.isRecordsViewVisible,
-            isConfigurationViewVisible: context.isConfigurationViewVisible,
+            isAccountsViewVisible: context.isAccountsViewVisible,
+            isUsersViewVisible: context.isUsersViewVisible,
             changeView: changeView
         };
     });
