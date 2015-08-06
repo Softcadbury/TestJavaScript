@@ -3,17 +3,17 @@ define('users.viewmodel',
     function (context, User) {
         var selectedUser = ko.observable();
         var newUserName = ko.observable('');
-        
+
         // Change the selected user
         function changeSelectedUser(data) {
             if (selectedUser()) {
-                selectedUser().isSelected(false);    
+                selectedUser().isSelected(false);
             }
-            
+
             selectedUser(data);
             selectedUser().isSelected(true);
         }
-        
+
         // Add a user
         function addUser() {
             if (newUserName().trim()) {
@@ -21,7 +21,7 @@ define('users.viewmodel',
                 newUserName('');
             }
         }
-        
+
         return {
             isUsersViewVisible: context.isUsersViewVisible,
             users: context.users,

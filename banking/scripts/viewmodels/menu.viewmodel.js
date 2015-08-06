@@ -5,7 +5,7 @@ define('menu.viewmodel',
             context.isChartsViewVisible(false);
             context.isAccountsViewVisible(false);
             context.isUsersViewVisible(false);
-            
+
             observable(true);
         }
 
