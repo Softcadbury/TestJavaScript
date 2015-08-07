@@ -3,6 +3,10 @@ body {
 	margin-top: 20px;
 }
 
+hr {
+	border-color: #ccc;
+}
+
 #main {
 	display: none;
 }
@@ -17,6 +21,10 @@ body {
 
 .nav li:not(.active) a {
    border: 1px solid #ccc;
+}
+
+.nav li.active a {
+   border: 1px solid #337ab7;
 }
 
 .datepicker {
