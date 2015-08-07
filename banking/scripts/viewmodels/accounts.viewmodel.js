@@ -3,7 +3,6 @@
     function (context, Account) {
         var selectedAccount = ko.observable();
         var newAccountName = ko.observable('');
-        var newInitialAmount = ko.observable('');
 
         // Change the selected account
         function changeSelectedAccount(data) {
@@ -36,7 +35,6 @@
             accounts: context.accounts,
             selectedAccount: selectedAccount,
             newAccountName: newAccountName,
-            newInitialAmount: newInitialAmount,
             changeSelectedAccount: changeSelectedAccount,
             addAccount: addAccount,
             deleteAccount: deleteAccount

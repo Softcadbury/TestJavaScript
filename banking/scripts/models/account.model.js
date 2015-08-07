@@ -1,13 +1,13 @@
 define('account.model',
     function () {
-		return function (accountNname, accountInitialValue) {
+		return function (accountNname) {
 			var name = ko.observable(accountNname);
-			var initialValue = ko.observable(accountInitialValue);
+			var amounts = ko.observableArray();
 			var isSelected = ko.observable(false);
 
 	        return {
 	        	name: name,
-				initialValue: initialValue,
+				amounts: amounts,
 				isSelected: isSelected
 	        };
 		};
