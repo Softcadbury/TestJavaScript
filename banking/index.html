@@ -61,6 +61,10 @@
 						<div class="panel panel-primary">
 							<div class="panel-heading"><span data-bind="text: name"></span></div>
 							<div class="panel-body">
+								<div class="form-group">
+									<input data-bind='textInput: name' class="form-control" placeholder="Name">
+								</div>
+								<hr />
 								<ul data-bind="foreach: amounts">
 									<li>
 										<span data-bind="text: value"></span>€ - <span data-bind="text: date"></span>
@@ -105,6 +109,10 @@
 						<div class="panel panel-primary">
 							<div class="panel-heading"><span data-bind="text: name"></span></div>
 							<div class="panel-body">
+								<div class="form-group">
+									<input data-bind='textInput: name' class="form-control" placeholder="Name">
+								</div>
+								<hr />
 								<button data-bind="click: $parent.deleteUser" type="submit" class="btn btn-danger">Delete user</button>
 							</div>
 						</div>
