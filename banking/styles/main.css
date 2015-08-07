@@ -15,6 +15,10 @@ body {
 	cursor: pointer;
 }
 
+.nav li:not(.active) a {
+   border: 1px solid #ccc;
+}
+
 .datepicker {
 	display: block;
 	margin-top: 26px;

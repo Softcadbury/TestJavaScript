@@ -12,6 +12,11 @@
         function changeSelectedAccount(data) {
             if (selectedAccount()) {
                 selectedAccount().isSelected(false);
+                
+                if (selectedAccount() == data) {
+                    selectedAccount(null);
+                    return;
+                }
             }
 
             selectedAccount(data);

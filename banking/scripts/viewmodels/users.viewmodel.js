@@ -8,6 +8,11 @@ define('users.viewmodel',
         function changeSelectedUser(data) {
             if (selectedUser()) {
                 selectedUser().isSelected(false);
+                
+                if (selectedUser() == data) {
+                    selectedUser(null);
+                    return;
+                }
             }
 
             selectedUser(data);
