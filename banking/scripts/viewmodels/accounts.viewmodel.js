@@ -3,6 +3,8 @@
     function (context, Account) {
         var selectedAccount = ko.observable();
         var newAccountName = ko.observable('');
+        
+        context.accounts.push(new Account('Livret A'));
 
         // Change the selected account
         function changeSelectedAccount(data) {
