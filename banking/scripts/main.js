@@ -6,4 +6,5 @@
         ko.applyBindings(usersViewmodel, document.getElementById('users-view'));
 
         $('#main').css("display", "block")
+        $('.date-picker').datepicker({});
     });
