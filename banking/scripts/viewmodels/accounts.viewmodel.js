@@ -18,7 +18,8 @@
             selectedAccount().isSelected(true);
             
             $('.date-picker').datepicker({
-                orientation: "top auto"
+                orientation: "top auto",
+                autoclose: true
             });
         }
 

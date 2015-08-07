@@ -42,18 +42,14 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="panel panel-primary">
-							<div class="panel-heading">List of accounts</div>
+							<div class="panel-heading">Accounts</div>
 							<div class="panel-body">
 								<ul class="nav nav-pills nav-stacked" data-bind="foreach: accounts">
 									<li data-bind="click: $parent.changeSelectedAccount, css: { active: isSelected }">
 										<a data-bind="text: name"></a>
 									</li>
 								</ul>
-							</div>
-						</div>
-						<div class="panel panel-primary">
-							<div class="panel-heading">Account creation</div>
-							<div class="panel-body">
+								<hr data-bind="visible: accounts().length > 0"/>
 								<div class="form-group">
 									<input data-bind='textInput: newAccountName' class="form-control" placeholder="Name">
 								</div>
@@ -90,18 +86,14 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="panel panel-primary">
-							<div class="panel-heading">List of users</div>
+							<div class="panel-heading">Users</div>
 							<div class="panel-body">
 								<ul class="nav nav-pills nav-stacked" data-bind="foreach: users">
 									<li data-bind="click: $parent.changeSelectedUser, css: { active: isSelected }">
 										<a data-bind="text: name"></a>
 									</li>
 								</ul>
-							</div>
-						</div>
-						<div class="panel panel-primary">
-							<div class="panel-heading">User creation</div>
-							<div class="panel-body">
+								<hr data-bind="visible: users().length > 0"/>
 								<div class="form-group">
 									<input data-bind='textInput: newUserName' class="form-control" placeholder="Name">
 								</div>
