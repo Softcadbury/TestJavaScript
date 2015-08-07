@@ -21,6 +21,14 @@ define('users.viewmodel',
                 newUserName('');
             }
         }
+        
+        // Delete the selected user
+        function deleteUser(data) {
+            if (selectedUser()) {
+                context.users.remove(selectedUser());
+                selectedUser(null);
+            }
+        }
 
         return {
             isUsersViewVisible: context.isUsersViewVisible,
@@ -28,6 +36,7 @@ define('users.viewmodel',
             selectedUser: selectedUser,
             newUserName: newUserName,
             changeSelectedUser: changeSelectedUser,
-            addUser: addUser
+            addUser: addUser,
+            deleteUser: deleteUser
         };
     });

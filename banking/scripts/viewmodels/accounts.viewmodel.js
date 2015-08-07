@@ -22,6 +22,14 @@
                 newAccountName('');
             }
         }
+        
+        // Delete the selected account
+        function deleteAccount(data) {
+            if (selectedAccount()) {
+                context.accounts.remove(selectedAccount());
+                selectedAccount(null);
+            }
+        }
 
         return {
             isAccountsViewVisible: context.isAccountsViewVisible,
@@ -30,6 +38,7 @@
             newAccountName: newAccountName,
             newInitialAmount: newInitialAmount,
             changeSelectedAccount: changeSelectedAccount,
-            addAccount: addAccount
+            addAccount: addAccount,
+            deleteAccount: deleteAccount
         };
     });
