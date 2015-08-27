@@ -32,6 +32,12 @@ hr {
 	margin-top: 26px;
 }
 
+.btn-xs {
+	margin-left: 5px;
+	margin-bottom: 2px;
+	padding: 0px 3px;
+}
+
 .amount-creation-container input {
 	margin-bottom: 8px;
 }

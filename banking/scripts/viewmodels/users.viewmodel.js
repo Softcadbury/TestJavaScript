@@ -28,7 +28,7 @@ define('users.viewmodel',
         }
         
         // Delete the selected user
-        function deleteUser(data) {
+        function deleteUser() {
             if (selectedUser()) {
                 context.users.remove(selectedUser());
                 selectedUser(null);

@@ -75,6 +75,7 @@
 											<div data-bind="foreach: amounts">
 												<div>
 													<span data-bind="text: date"></span> - <span data-bind="text: value"></span>€
+													<button data-bind="click: $parent.deleteAmount" type="button" class="btn btn-danger btn-xs">Delete</button>
 												</div>
 											</div>
 										</div>
@@ -92,7 +93,7 @@
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Other</label>
 										<div class="col-sm-9">
-											<button data-bind="click: $parent.deleteAccount" type="submit" class="btn btn-danger">Delete account</button>
+											<button data-bind="click: $parent.deleteAccount" type="button" class="btn btn-danger">Delete account</button>
 										</div>
 									</div>
 								</div>
@@ -136,7 +137,7 @@
 									<div class="form-group">
 										<label class="col-sm-3 control-label">Other</label>
 										<div class="col-sm-9">
-											<button data-bind="click: $parent.deleteUser" type="submit" class="btn btn-danger">Delete user</button>
+											<button data-bind="click: $parent.deleteUser" type="button" class="btn btn-danger">Delete user</button>
 										</div>
 									</div>
 								</div>

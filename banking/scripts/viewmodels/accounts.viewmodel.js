@@ -46,11 +46,18 @@
         }
         
         // Delete the selected account
-        function deleteAccount(data) {
+        function deleteAccount() {
             if (selectedAccount()) {
                 context.accounts.remove(selectedAccount());
                 selectedAccount(null);
             }
+        }
+        
+        // Delete the amount
+        function deleteAmount(data) {            
+            if (selectedAccount()) {                
+                selectedAccount().amounts.remove(data);
+            }            
         }
 
         return {
@@ -63,6 +70,7 @@
             changeSelectedAccount: changeSelectedAccount,
             addAccount: addAccount,
             addAmount: addAmount,
-            deleteAccount: deleteAccount
+            deleteAccount: deleteAccount,
+            deleteAmount: deleteAmount
         };
     });
