@@ -61,25 +61,41 @@
 						<div class="panel panel-primary">
 							<div class="panel-heading"><span data-bind="text: name"></span></div>
 							<div class="panel-body">
-								<div class="form-group">
-									<input data-bind='textInput: name' class="form-control" placeholder="Name">
+								<div class="form-horizontal">
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Name</label>
+										<div class="col-sm-9">
+											<input data-bind='textInput: name' class="form-control" placeholder="Name">
+										</div>
+									</div>
+									<hr />
+									<div class="form-group" data-bind="visible: amounts().length > 0">
+										<label class="col-sm-3 control-label">Amounts</label>
+										<div class="col-sm-9">
+											<div data-bind="foreach: amounts">
+												<div>
+													<span data-bind="text: date"></span> - <span data-bind="text: value"></span>€
+												</div>
+											</div>
+										</div>
+									</div>
+									<hr data-bind="visible: amounts().length > 0"/>
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Amount Creation</label>
+										<div class="col-sm-9 amount-creation-container">
+											<input data-bind='textInput: $parent.newAmountValue' class="form-control" placeholder="Value">
+											<input data-bind='textInput: $parent.newAmountDate' class="form-control date-picker" placeholder="Date">
+											<button data-bind="click: $parent.addAmount" type="submit" class="btn btn-primary">Add amount</button>
+										</div>
+									</div>
+									<hr />
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Other</label>
+										<div class="col-sm-9">
+											<button data-bind="click: $parent.deleteAccount" type="submit" class="btn btn-danger">Delete account</button>
+										</div>
+									</div>
 								</div>
-								<hr />
-								<ul data-bind="foreach: amounts">
-									<li>
-										<span data-bind="text: value"></span>€ - <span data-bind="text: date"></span>
-									</li>
-								</ul>
-								<hr data-bind="visible: amounts().length > 0"/>
-								<div class="form-group">
-									<input data-bind='textInput: $parent.newAmountValue' class="form-control" placeholder="Value">
-								</div>
-								<div class="form-group">
-									<input data-bind='textInput: $parent.newAmountDate' class="form-control date-picker" placeholder="Date">
-								</div>
-								<button data-bind="click: $parent.addAmount" type="submit" class="btn btn-primary">Add amount</button>
-								<hr />
-								<button data-bind="click: $parent.deleteAccount" type="submit" class="btn btn-danger">Delete account</button>
 							</div>
 						</div>
 					</div>
@@ -109,11 +125,21 @@
 						<div class="panel panel-primary">
 							<div class="panel-heading"><span data-bind="text: name"></span></div>
 							<div class="panel-body">
-								<div class="form-group">
-									<input data-bind='textInput: name' class="form-control" placeholder="Name">
+								<div class="form-horizontal">
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Name</label>
+										<div class="col-sm-9">
+											<input data-bind='textInput: name' class="form-control" placeholder="Name">
+										</div>
+									</div>
+									<hr />
+									<div class="form-group">
+										<label class="col-sm-3 control-label">Other</label>
+										<div class="col-sm-9">
+											<button data-bind="click: $parent.deleteUser" type="submit" class="btn btn-danger">Delete user</button>
+										</div>
+									</div>
 								</div>
-								<hr />
-								<button data-bind="click: $parent.deleteUser" type="submit" class="btn btn-danger">Delete user</button>
 							</div>
 						</div>
 					</div>
