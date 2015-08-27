@@ -69,6 +69,35 @@
 										</div>
 									</div>
 									<hr />
+									<div class="form-group" data-bind="visible: owners().length > 0">
+										<label class="col-sm-3 control-label">Owners</label>
+										<div class="col-sm-9">
+											<div data-bind="foreach: owners">
+												<div>
+													<span data-bind="text: name"></span>
+													<button data-bind="click: $root.removeOwner" type="button" class="btn btn-danger btn-xs">Remove</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<hr data-bind="visible: owners().length > 0" />
+									<div class="form-group" data-bind="visible: $parent.users().length > 0">
+										<label class="col-sm-3 control-label">Add Owner</label>
+										<div class="col-sm-9">
+											<div class="dropdown">
+												<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuUser" data-toggle="dropdown">
+													Users
+													<span class="caret"></span>
+												</button>
+												<ul class="dropdown-menu" aria-labelledby="dropdownMenuUser" data-bind="foreach: $parent.users">
+													<li data-bind="click: $root.addOwner">
+														<a data-bind="text: name"></a>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<hr data-bind="visible: $parent.users().length > 0" />
 									<div class="form-group" data-bind="visible: amounts().length > 0">
 										<label class="col-sm-3 control-label">Amounts</label>
 										<div class="col-sm-9">

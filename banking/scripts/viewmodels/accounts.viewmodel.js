@@ -9,17 +9,17 @@
         context.accounts.push(new Account('Livret A'));
 
         // Change the selected account
-        function changeSelectedAccount(data) {
+        function changeSelectedAccount(account) {
             if (selectedAccount()) {
                 selectedAccount().isSelected(false);
                 
-                if (selectedAccount() == data) {
+                if (selectedAccount() == account) {
                     selectedAccount(null);
                     return;
                 }
             }
 
-            selectedAccount(data);
+            selectedAccount(account);
             selectedAccount().isSelected(true);
             
             $('.date-picker').datepicker({
@@ -36,15 +36,6 @@
             }
         }
         
-        // Add an amount
-        function addAmount() {
-            if (selectedAccount() && !isNaN(parseInt(newAmountValue().trim())) && newAmountDate().trim()) {
-                selectedAccount().amounts.push(new Amount(newAmountValue(), newAmountDate()));
-                newAmountValue('');
-                newAmountDate('');
-            }            
-        }
-        
         // Delete the selected account
         function deleteAccount() {
             if (selectedAccount()) {
@@ -53,24 +44,50 @@
             }
         }
         
-        // Delete the amount
-        function deleteAmount(data) {            
+        // Add a owner to the selected account
+        function addOwner(user) {
+            if (selectedAccount() && selectedAccount().owners().indexOf(user) == -1) {
+                selectedAccount().owners.push(user);                
+            }
+        }
+        
+        // Remove the owner to the selected account
+        function removeOwner(user) {
+            if (selectedAccount()) {
+                selectedAccount().owners.remove(user);                
+            }
+        }
+        
+        // Add an amount to the selected account
+        function addAmount() {
+            if (selectedAccount() && !isNaN(parseInt(newAmountValue().trim())) && newAmountDate().trim()) {
+                selectedAccount().amounts.push(new Amount(newAmountValue(), newAmountDate()));
+                newAmountValue('');
+                newAmountDate('');
+            }            
+        }
+        
+        // Delete the amount to the selected account
+        function deleteAmount(amount) {            
             if (selectedAccount()) {                
-                selectedAccount().amounts.remove(data);
+                selectedAccount().amounts.remove(amount);
             }            
         }
 
         return {
             isAccountsViewVisible: context.isAccountsViewVisible,
             accounts: context.accounts,
+            users: context.users,
             selectedAccount: selectedAccount,
             newAccountName: newAccountName,
             newAmountValue: newAmountValue,
             newAmountDate: newAmountDate,
             changeSelectedAccount: changeSelectedAccount,
             addAccount: addAccount,
-            addAmount: addAmount,
             deleteAccount: deleteAccount,
+            addOwner: addOwner,
+            removeOwner: removeOwner,
+            addAmount: addAmount,
             deleteAmount: deleteAmount
         };
     });
