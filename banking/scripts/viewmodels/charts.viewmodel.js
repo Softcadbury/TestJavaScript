@@ -2,10 +2,12 @@ define('charts.viewmodel',
     ['context'],
     function (context) {
         context.isChartsViewVisible.subscribe(function (newValue) {
-            if (newValue) {
-                var context = document.getElementById('myChart').getContext("2d");
-                new Chart(context).Line(data);
-            }
+            setTimeout(function () {
+                if (newValue) {
+                    var context = document.getElementById('myChart').getContext("2d");
+                    new Chart(context).Line(data);
+                }
+            }, 0);
         });
 
         var data = {
