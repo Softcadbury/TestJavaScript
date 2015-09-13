@@ -5,7 +5,7 @@ define('charts.viewmodel',
             if (newValue) {
                 var dataPoints = [];
                 
-                context.accounts()[0].amounts().forEach(function (amount) {
+                context.accounts()[0].sortedAmounts().forEach(function (amount) {
                     var splitedDate = amount.date().split('/');
                     var date = new Date(splitedDate[2], splitedDate[1], splitedDate[0]);
                     dataPoints.push({ x: date, y: amount.value() });    
