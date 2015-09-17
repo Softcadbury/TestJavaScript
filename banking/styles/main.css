@@ -43,6 +43,14 @@ canvas {
 	padding: 0px 3px;
 }
 
+.chart-account {
+	height: 400px;
+}
+
+.canvasjs-chart-credit {
+	display: none;
+}
+
 .amount-creation-container input {
 	margin-bottom: 8px;
 }

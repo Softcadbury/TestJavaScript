@@ -15,8 +15,8 @@ define('charts.viewmodel',
                         dataPoints.push({ x: date, y: parseInt(amount.value()) });    
                     });
                     
-                    var chartName = 'chart_' + index;
-                    chartsViewElement.append('<div id="' + chartName + '" width="400" height="400"></div>');
+                    var chartName = 'chart-' + index;
+                    chartsViewElement.append('<div class="chart-account"><div width="400" height="400" id="' + chartName + '"></div></div>');
                     addChart(chartName, account.name(), dataPoints); 
                 });
             }
