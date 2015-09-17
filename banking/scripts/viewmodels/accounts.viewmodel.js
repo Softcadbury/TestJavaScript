@@ -29,7 +29,7 @@
             $('.date-picker').datepicker({
                 orientation: "top auto",
                 autoclose: true,
-                format: 'dd/mm/yy'
+                format: 'dd/mm/yyyy'
             });
         }
 

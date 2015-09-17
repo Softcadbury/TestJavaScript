@@ -8,9 +8,11 @@ define('charts.viewmodel',
                 context.accounts()[0].sortedAmounts().forEach(function (amount) {
                     var splitedDate = amount.date().split('/');
                     var date = new Date(splitedDate[2], splitedDate[1], splitedDate[0]);
-                    dataPoints.push({ x: date, y: amount.value() });    
+                    dataPoints.push({ x: date, y: parseInt(amount.value()) });    
                 });
-                
+
+                $('#charts-view').html('');
+                $('#charts-view').append('<div id="myChart" width="400" height="400"></div>');
                 addChart('myChart', context.accounts()[0].name(), dataPoints);
             }
         });
