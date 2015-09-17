@@ -1,19 +1,24 @@
 define('charts.viewmodel',
     ['context'],
     function (context) {
+        var chartsViewElement = $('#charts-view'); 
+        
         context.isChartsViewVisible.subscribe(function (newValue) {
-            if (newValue) {
-                var dataPoints = [];
-                
-                context.accounts()[0].sortedAmounts().forEach(function (amount) {
-                    var splitedDate = amount.date().split('/');
-                    var date = new Date(splitedDate[2], splitedDate[1], splitedDate[0]);
-                    dataPoints.push({ x: date, y: parseInt(amount.value()) });    
+            if (newValue) {                
+                chartsViewElement.empty();
+                context.accounts().forEach(function(account, index) {
+                    var dataPoints = [];
+                    
+                    account.sortedAmounts().forEach(function (amount) {
+                        var splitedDate = amount.date().split('/');
+                        var date = new Date(splitedDate[2], splitedDate[1], splitedDate[0]);
+                        dataPoints.push({ x: date, y: parseInt(amount.value()) });    
+                    });
+                    
+                    var chartName = 'chart_' + index;
+                    chartsViewElement.append('<div id="' + chartName + '" width="400" height="400"></div>');
+                    addChart(chartName, account.name(), dataPoints); 
                 });
-
-                $('#charts-view').html('');
-                $('#charts-view').append('<div id="myChart" width="400" height="400"></div>');
-                addChart('myChart', context.accounts()[0].name(), dataPoints);
             }
         });
 
