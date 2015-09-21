@@ -3,14 +3,14 @@ define('users.viewmodel',
     function (context, User) {
         var selectedUser = ko.observable();
         var newUserName = ko.observable('');
-        
+
         context.users.push(new User('Romain'));
 
         // Change the selected user
         function changeSelectedUser(user) {
             if (selectedUser()) {
                 selectedUser().isSelected(false);
-                
+
                 if (selectedUser() == user) {
                     selectedUser(null);
                     return;

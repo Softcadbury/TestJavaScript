@@ -1,175 +1,132 @@
 <!DOCTYPE html>
 <html lang="fr">
-	<head>
-		<title>Banking</title>
-		<meta charset="utf-8">
-		<meta name="description" content="Banking">
-		<meta name="author" content="Romain Parage">
 
-		<!-- Scripts -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
-    	<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.20/require.min.js" data-main="./scripts/main.js"></script>
-    	<script src="./scripts/viewmodels/menu.viewmodel.js"></script>
-		<script src="./scripts/viewmodels/charts.viewmodel.js"></script>
-		<script src="./scripts/viewmodels/accounts.viewmodel.js"></script>
-		<script src="./scripts/viewmodels/users.viewmodel.js"></script>
-		<script src="./scripts/models/account.model.js"></script>
-		<script src="./scripts/models/amount.model.js"></script>
-		<script src="./scripts/models/user.model.js"></script>
-		<script src="./scripts/context.js"></script>
-		<script src="./scripts/data.js"></script>
+<head>
+	<title>Banking</title>
+	<meta charset="utf-8">
+	<meta name="description" content="Banking">
+	<meta name="author" content="Romain Parage">
 
-		<!-- Styles -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker3.min.css">
-		<link rel="stylesheet" href="./styles/main.css">
-	</head>
-	<body>
-		<div id="main" class="container">
-			<ul id="menu-view" class="nav nav-pills">
-				<li data-bind="css: { active: isChartsViewVisible }, click: function(){ changeView(isChartsViewVisible); }"><a href="#">Charts</a></li>
-				<li data-bind="css: { active: isAccountsViewVisible }, click: function(){ changeView(isAccountsViewVisible); }"><a href="#">Accounts</a></li>
-				<li data-bind="css: { active: isUsersViewVisible }, click: function(){ changeView(isUsersViewVisible); }"><a href="#">Users</a></li>
-			</ul>
-			<!-- Charts view -->
-			<div id="charts-view" data-bind="visible: isChartsViewVisible">
-				<div id="myChart" width="400" height="400"></div>
-			</div>
-			<!-- Accounts view -->
-			<div id="accounts-view" data-bind="visible: isAccountsViewVisible">
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="panel panel-primary">
-							<div class="panel-heading">Accounts</div>
-							<div class="panel-body">
-								<ul class="nav nav-pills nav-stacked" data-bind="foreach: accounts">
-									<li data-bind="click: $parent.changeSelectedAccount, css: { active: isSelected }">
-										<a data-bind="text: name"></a>
-									</li>
-								</ul>
-								<hr data-bind="visible: accounts().length > 0"/>
-								<div class="form-group">
-									<input data-bind='textInput: newAccountName' class="form-control" placeholder="Name">
-								</div>
-								<button data-bind="click: addAccount" type="submit" class="btn btn-primary">Add account</button>
+	<!-- Scripts -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.20/require.min.js" data-main="./scripts/main.js"></script>
+	<script src="./scripts/viewmodels/menu.viewmodel.js"></script>
+	<script src="./scripts/viewmodels/charts.viewmodel.js"></script>
+	<script src="./scripts/viewmodels/accounts.viewmodel.js"></script>
+	<script src="./scripts/viewmodels/users.viewmodel.js"></script>
+	<script src="./scripts/models/account.model.js"></script>
+	<script src="./scripts/models/amount.model.js"></script>
+	<script src="./scripts/models/user.model.js"></script>
+	<script src="./scripts/context.js"></script>
+	<script src="./scripts/data.js"></script>
+
+	<!-- Styles -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker3.min.css">
+	<link rel="stylesheet" href="./styles/main.css">
+</head>
+
+<body>
+	<div id="main" class="container">
+		<ul id="menu-view" class="nav nav-pills">
+			<li data-bind="css: { active: isChartsViewVisible }, click: function(){ changeView(isChartsViewVisible); }"><a href="#">Charts</a></li>
+			<li data-bind="css: { active: isAccountsViewVisible }, click: function(){ changeView(isAccountsViewVisible); }"><a href="#">Accounts</a></li>
+			<li data-bind="css: { active: isUsersViewVisible }, click: function(){ changeView(isUsersViewVisible); }"><a href="#">Users</a></li>
+		</ul>
+		<!-- Charts view -->
+		<div id="charts-view" data-bind="visible: isChartsViewVisible">
+			<div id="myChart" width="400" height="400"></div>
+		</div>
+		<!-- Accounts view -->
+		<div id="accounts-view" data-bind="visible: isAccountsViewVisible">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="panel panel-primary">
+						<div class="panel-heading">Accounts</div>
+						<div class="panel-body">
+							<ul class="nav nav-pills nav-stacked" data-bind="foreach: accounts">
+								<li data-bind="click: $parent.changeSelectedAccount, css: { active: isSelected }">
+									<a data-bind="text: name"></a>
+								</li>
+							</ul>
+							<hr data-bind="visible: accounts().length > 0" />
+							<div class="form-group">
+								<input data-bind='textInput: newAccountName' class="form-control" placeholder="Name">
 							</div>
-						</div>
-					</div>
-					<div class="col-sm-6" data-bind="with: selectedAccount">
-						<div class="panel panel-primary">
-							<div class="panel-heading"><span data-bind="text: name"></span></div>
-							<div class="panel-body">
-								<div class="form-horizontal">
-									<div class="form-group">
-										<label class="col-sm-3 control-label">Name</label>
-										<div class="col-sm-9">
-											<input data-bind='textInput: name' class="form-control" placeholder="Name">
-										</div>
-									</div>
-									<hr />
-									<div class="form-group" data-bind="visible: owners().length > 0">
-										<label class="col-sm-3 control-label">Owners</label>
-										<div class="col-sm-9">
-											<div data-bind="foreach: owners">
-												<div>
-													<span data-bind="text: name"></span>
-													<button data-bind="click: $root.removeOwner" type="button" class="btn btn-danger btn-xs">Remove</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<hr data-bind="visible: owners().length > 0" />
-									<div class="form-group" data-bind="visible: $parent.users().length > 0">
-										<label class="col-sm-3 control-label">Add Owner</label>
-										<div class="col-sm-9">
-											<div class="dropdown">
-												<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuUser" data-toggle="dropdown">
-													Users
-													<span class="caret"></span>
-												</button>
-												<ul class="dropdown-menu" aria-labelledby="dropdownMenuUser" data-bind="foreach: $parent.users">
-													<li data-bind="click: $root.addOwner">
-														<a data-bind="text: name"></a>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
-									<hr data-bind="visible: $parent.users().length > 0" />
-									<div class="form-group" data-bind="visible: amounts().length > 0">
-										<label class="col-sm-3 control-label">Amounts</label>
-										<div class="col-sm-9">
-											<div data-bind="foreach: amounts">
-												<div>
-													<span data-bind="text: date"></span> - <span data-bind="text: value"></span>€
-													<button data-bind="click: $parent.deleteAmount" type="button" class="btn btn-danger btn-xs">Delete</button>
-												</div>
-											</div>
-										</div>
-									</div>
-									<hr data-bind="visible: amounts().length > 0"/>
-									<div class="form-group">
-										<label class="col-sm-3 control-label">Amount Creation</label>
-										<div class="col-sm-9 amount-creation-container">
-											<input data-bind='textInput: $parent.newAmountValue' class="form-control" placeholder="Value">
-											<input data-bind='textInput: $parent.newAmountDate' class="form-control date-picker" placeholder="Date">
-											<button data-bind="click: $parent.addAmount" type="submit" class="btn btn-primary">Add amount</button>
-										</div>
-									</div>
-									<hr />
-									<div class="form-group">
-										<label class="col-sm-3 control-label">Other</label>
-										<div class="col-sm-9">
-											<button data-bind="click: $parent.deleteAccount" type="button" class="btn btn-danger">Delete account</button>
-										</div>
-									</div>
-								</div>
-							</div>
+							<button data-bind="click: addAccount" type="submit" class="btn btn-primary">Add account</button>
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- Users view -->
-			<div id="users-view" data-bind="visible: isUsersViewVisible">
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="panel panel-primary">
-							<div class="panel-heading">Users</div>
-							<div class="panel-body">
-								<ul class="nav nav-pills nav-stacked" data-bind="foreach: users">
-									<li data-bind="click: $parent.changeSelectedUser, css: { active: isSelected }">
-										<a data-bind="text: name"></a>
-									</li>
-								</ul>
-								<hr data-bind="visible: users().length > 0"/>
+				<div class="col-sm-6" data-bind="with: selectedAccount">
+					<div class="panel panel-primary">
+						<div class="panel-heading"><span data-bind="text: name"></span></div>
+						<div class="panel-body">
+							<div class="form-horizontal">
 								<div class="form-group">
-									<input data-bind='textInput: newUserName' class="form-control" placeholder="Name">
+									<label class="col-sm-3 control-label">Name</label>
+									<div class="col-sm-9">
+										<input data-bind='textInput: name' class="form-control" placeholder="Name">
+									</div>
 								</div>
-								<button data-bind="click: addUser" type="submit" class="btn btn-primary">Add user</button>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6" data-bind="with: selectedUser">
-						<div class="panel panel-primary">
-							<div class="panel-heading"><span data-bind="text: name"></span></div>
-							<div class="panel-body">
-								<div class="form-horizontal">
-									<div class="form-group">
-										<label class="col-sm-3 control-label">Name</label>
-										<div class="col-sm-9">
-											<input data-bind='textInput: name' class="form-control" placeholder="Name">
+								<hr />
+								<div class="form-group" data-bind="visible: owners().length > 0">
+									<label class="col-sm-3 control-label">Owners</label>
+									<div class="col-sm-9">
+										<div data-bind="foreach: owners">
+											<div>
+												<span data-bind="text: name"></span>
+												<button data-bind="click: $root.removeOwner" type="button" class="btn btn-danger btn-xs">Remove</button>
+											</div>
 										</div>
 									</div>
-									<hr />
-									<div class="form-group">
-										<label class="col-sm-3 control-label">Other</label>
-										<div class="col-sm-9">
-											<button data-bind="click: $parent.deleteUser" type="button" class="btn btn-danger">Delete user</button>
+								</div>
+								<hr data-bind="visible: owners().length > 0" />
+								<div class="form-group" data-bind="visible: $parent.users().length > 0">
+									<label class="col-sm-3 control-label">Add Owner</label>
+									<div class="col-sm-9">
+										<div class="dropdown">
+											<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuUser" data-toggle="dropdown">
+												Users
+												<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu" aria-labelledby="dropdownMenuUser" data-bind="foreach: $parent.users">
+												<li data-bind="click: $root.addOwner">
+													<a data-bind="text: name"></a>
+												</li>
+											</ul>
 										</div>
+									</div>
+								</div>
+								<hr data-bind="visible: $parent.users().length > 0" />
+								<div class="form-group" data-bind="visible: amounts().length > 0">
+									<label class="col-sm-3 control-label">Amounts</label>
+									<div class="col-sm-9">
+										<div data-bind="foreach: amounts">
+											<div>
+												<span data-bind="text: date"></span> - <span data-bind="text: value"></span>€
+												<button data-bind="click: $parent.deleteAmount" type="button" class="btn btn-danger btn-xs">Delete</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<hr data-bind="visible: amounts().length > 0" />
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Amount Creation</label>
+									<div class="col-sm-9 amount-creation-container">
+										<input data-bind='textInput: $parent.newAmountValue' class="form-control" placeholder="Value">
+										<input data-bind='textInput: $parent.newAmountDate' class="form-control date-picker" placeholder="Date">
+										<button data-bind="click: $parent.addAmount" type="submit" class="btn btn-primary">Add amount</button>
+									</div>
+								</div>
+								<hr />
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Other</label>
+									<div class="col-sm-9">
+										<button data-bind="click: $parent.deleteAccount" type="button" class="btn btn-danger">Delete account</button>
 									</div>
 								</div>
 							</div>
@@ -178,5 +135,51 @@
 				</div>
 			</div>
 		</div>
-	</body>
+		<!-- Users view -->
+		<div id="users-view" data-bind="visible: isUsersViewVisible">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="panel panel-primary">
+						<div class="panel-heading">Users</div>
+						<div class="panel-body">
+							<ul class="nav nav-pills nav-stacked" data-bind="foreach: users">
+								<li data-bind="click: $parent.changeSelectedUser, css: { active: isSelected }">
+									<a data-bind="text: name"></a>
+								</li>
+							</ul>
+							<hr data-bind="visible: users().length > 0" />
+							<div class="form-group">
+								<input data-bind='textInput: newUserName' class="form-control" placeholder="Name">
+							</div>
+							<button data-bind="click: addUser" type="submit" class="btn btn-primary">Add user</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6" data-bind="with: selectedUser">
+					<div class="panel panel-primary">
+						<div class="panel-heading"><span data-bind="text: name"></span></div>
+						<div class="panel-body">
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Name</label>
+									<div class="col-sm-9">
+										<input data-bind='textInput: name' class="form-control" placeholder="Name">
+									</div>
+								</div>
+								<hr />
+								<div class="form-group">
+									<label class="col-sm-3 control-label">Other</label>
+									<div class="col-sm-9">
+										<button data-bind="click: $parent.deleteUser" type="button" class="btn btn-danger">Delete user</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
 </html>

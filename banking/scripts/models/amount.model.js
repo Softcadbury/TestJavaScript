@@ -4,9 +4,9 @@ define('amount.model',
 			var value = ko.observable(amountValue);
 			var date = ko.observable(amountDate);
 
-	        return {
-	        	value: value,
+			return {
+				value: value,
 				date: date
-	        };
+			};
 		};
     });

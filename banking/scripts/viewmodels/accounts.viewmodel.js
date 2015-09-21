@@ -5,7 +5,7 @@
         var newAccountName = ko.observable('');
         var newAmountValue = ko.observable('');
         var newAmountDate = ko.observable('');
-        
+
         context.accounts.push(new Account('Livret A'));
         context.accounts()[0].amounts.push(new Amount(10, '20/05/2015'));
         context.accounts()[0].amounts.push(new Amount(10, '10/01/2015'));
@@ -16,7 +16,7 @@
         function changeSelectedAccount(account) {
             if (selectedAccount()) {
                 selectedAccount().isSelected(false);
-                
+
                 if (selectedAccount() == account) {
                     selectedAccount(null);
                     return;
@@ -25,7 +25,7 @@
 
             selectedAccount(account);
             selectedAccount().isSelected(true);
-            
+
             $('.date-picker').datepicker({
                 orientation: "top auto",
                 autoclose: true,
@@ -52,14 +52,14 @@
         // Add a owner to the selected account
         function addOwner(user) {
             if (selectedAccount() && selectedAccount().owners().indexOf(user) == -1) {
-                selectedAccount().owners.push(user);                
+                selectedAccount().owners.push(user);
             }
         }
         
         // Remove the owner to the selected account
         function removeOwner(user) {
             if (selectedAccount()) {
-                selectedAccount().owners.remove(user);                
+                selectedAccount().owners.remove(user);
             }
         }
         
@@ -69,14 +69,14 @@
                 selectedAccount().amounts.push(new Amount(newAmountValue(), newAmountDate()));
                 newAmountValue('');
                 newAmountDate('');
-            }            
+            }
         }
         
         // Delete the amount to the selected account
-        function deleteAmount(amount) {            
-            if (selectedAccount()) {                
+        function deleteAmount(amount) {
+            if (selectedAccount()) {
                 selectedAccount().amounts.remove(amount);
-            }            
+            }
         }
 
         return {

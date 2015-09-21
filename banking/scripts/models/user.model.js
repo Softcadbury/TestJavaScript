@@ -4,9 +4,9 @@ define('user.model',
 			var name = ko.observable(userNname);
 			var isSelected = ko.observable(false);
 
-	        return {
-	        	name: name,
+			return {
+				name: name,
 				isSelected: isSelected
-	        };
+			};
 		};
     });
