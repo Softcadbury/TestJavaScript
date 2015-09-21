@@ -1,12 +1,13 @@
 define('menu.viewmodel',
     ['context'],
     function (context) {
-        function changeView(observable) {
+        // Hide every views except the requested one
+        function changeView(visibilityToChange) {
             context.isChartsViewVisible(false);
             context.isAccountsViewVisible(false);
             context.isUsersViewVisible(false);
 
-            observable(true);
+            visibilityToChange(true);
         }
 
         return {
