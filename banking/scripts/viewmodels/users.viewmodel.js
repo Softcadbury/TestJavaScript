@@ -1,6 +1,6 @@
 define('users.viewmodel',
-    ['context', 'user.model'],
-    function (context, User) {
+    ['context', 'data', 'user.model'],
+    function (context, data, User) {
         var selectedUser = ko.observable();
         var newUserName = ko.observable('');
 
@@ -25,6 +25,7 @@ define('users.viewmodel',
         function addUser() {
             if (newUserName().trim()) {
                 context.users.push(new User(newUserName().trim()));
+                data.saveUsers();
                 newUserName('');
             }
         }
@@ -33,6 +34,7 @@ define('users.viewmodel',
         function deleteUser() {
             if (selectedUser()) {
                 context.users.remove(selectedUser());
+                data.saveUsers();
                 selectedUser(null);
             }
         }

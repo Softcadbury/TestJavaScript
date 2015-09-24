@@ -1,6 +1,6 @@
 ﻿define('accounts.viewmodel',
-    ['context', 'account.model', 'amount.model'],
-    function (context, Account, Amount) {
+    ['context', 'data', 'account.model', 'amount.model'],
+    function (context, data, Account, Amount) {
         var selectedAccount = ko.observable();
         var newAccountName = ko.observable('');
         var newAmountValue = ko.observable('');
@@ -37,6 +37,7 @@
         function addAccount() {
             if (newAccountName().trim()) {
                 context.accounts.push(new Account(newAccountName().trim()));
+                data.saveAccounts();
                 newAccountName('');
             }
         }
@@ -45,6 +46,7 @@
         function deleteAccount() {
             if (selectedAccount()) {
                 context.accounts.remove(selectedAccount());
+                data.saveAccounts();
                 selectedAccount(null);
             }
         }
@@ -53,6 +55,7 @@
         function addOwner(user) {
             if (selectedAccount() && selectedAccount().owners().indexOf(user) == -1) {
                 selectedAccount().owners.push(user);
+                data.saveAccounts();
             }
         }
         
@@ -60,6 +63,7 @@
         function removeOwner(user) {
             if (selectedAccount()) {
                 selectedAccount().owners.remove(user);
+                data.saveAccounts();
             }
         }
         
@@ -67,6 +71,7 @@
         function addAmount() {
             if (selectedAccount() && !isNaN(parseInt(newAmountValue().trim())) && newAmountDate().trim()) {
                 selectedAccount().amounts.push(new Amount(newAmountValue(), newAmountDate()));
+                data.saveAccounts();
                 newAmountValue('');
                 newAmountDate('');
             }
@@ -76,6 +81,7 @@
         function deleteAmount(amount) {
             if (selectedAccount()) {
                 selectedAccount().amounts.remove(amount);
+                data.saveAccounts();
             }
         }
 
