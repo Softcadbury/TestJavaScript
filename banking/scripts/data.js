@@ -8,7 +8,8 @@ define('data',
                 var parsedData = JSON.parse(data);
 
                 parsedData.forEach(function (user) {
-                    context.users.push(new User(user.name));
+                    var loadedUser = new User(user.name);
+                    context.users.push(loadedUser);
                 });
             }
         }
@@ -18,6 +19,14 @@ define('data',
             var data = localStorage.getItem('accounts');
             if (data) {
                 var parsedData = JSON.parse(data);
+
+                parsedData.forEach(function (account) {
+                    var loadedAccount = new Account(account.name);
+                    context.accounts.push(loadedAccount);
+                    account.amounts.forEach(function (amount) {
+                        loadedAccount.amounts.push(new Amount(amount.value, amount.date));
+                    });
+                });
             }
         }
         

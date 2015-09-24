@@ -6,12 +6,6 @@
         var newAmountValue = ko.observable('');
         var newAmountDate = ko.observable('');
 
-        context.accounts.push(new Account('Livret A'));
-        context.accounts()[0].amounts.push(new Amount(10, '20/05/2015'));
-        context.accounts()[0].amounts.push(new Amount(10, '10/01/2015'));
-        context.accounts()[0].amounts.push(new Amount(25, '01/03/2015'));
-        context.accounts()[0].amounts.push(new Amount(20, '15/02/2015'));
-
         // Change the selected account
         function changeSelectedAccount(account) {
             if (selectedAccount()) {
