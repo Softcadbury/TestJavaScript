@@ -8,13 +8,13 @@ define('data',
                 var parsedData = JSON.parse(data);
 
                 parsedData.forEach(function (user) {
-                    var loadedUser = new User(user.name);
+                    var loadedUser = new User(user.id, user.name);
                     context.users.push(loadedUser);
                 });
             }
         }
         
-        // Loads the context of accounts
+        // Loads the context of accounts. Users must be loaded to get owners.
         function loadAcounts() {
             var data = localStorage.getItem('accounts');
             if (data) {
@@ -23,8 +23,17 @@ define('data',
                 parsedData.forEach(function (account) {
                     var loadedAccount = new Account(account.name);
                     context.accounts.push(loadedAccount);
+
                     account.amounts.forEach(function (amount) {
                         loadedAccount.amounts.push(new Amount(amount.value, amount.date));
+                    });
+
+                    account.owners.forEach(function (owner) {
+                        context.users().forEach(function (user) {
+                            if (owner.id == user.id) {
+                                loadedAccount.owners.push(user);
+                            }
+                        });
                     });
                 });
             }

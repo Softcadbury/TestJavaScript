@@ -22,7 +22,8 @@ define('users.viewmodel',
         // Add a user
         function addUser() {
             if (newUserName().trim()) {
-                context.users.push(new User(newUserName().trim()));
+                var newId = (new Date()).getTime();
+                context.users.push(new User(newId, newUserName().trim()));
                 data.saveUsers();
                 newUserName('');
             }
