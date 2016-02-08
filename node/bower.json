@@ -1,0 +1,21 @@
+{
+  "name": "test",
+  "description": "test",
+  "main": "app.js",
+  "authors": [
+    "Romain Parage <rparage@talentsoft.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/Softcadbury/Projects",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.0"
+  }
+}
