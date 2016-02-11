@@ -33,10 +33,10 @@ gulp.task('inject', function () {
         ignorePath: '/public'
     };
 
-    return gulp.src('./public/views/*.html')
+    return gulp.src('./views/*.hbs')
         .pipe(wiredep(wiredepOptions))
         .pipe(inject(injectSrc, injectOptions))
-        .pipe(gulp.dest('./public/views'));
+        .pipe(gulp.dest('./views'));
 });
 
 // Start the node server after each file modification
