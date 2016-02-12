@@ -42,7 +42,7 @@ gulp.task('inject', function () {
 // Start the node server after each file modification
 gulp.task('serve', ['check', 'inject'], function () {
     var options = {
-        script: 'app.js',
+        script: 'server.js',
         delayTime: 1,
         env: {
             'PORT': 5000
