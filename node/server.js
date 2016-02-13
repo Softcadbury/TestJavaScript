@@ -12,10 +12,23 @@ app.set('views', 'views');
 app.engine('.hbs', handlebars({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
 
+app.listen(port, function (err) {
+    console.log('running on ' + port);
+});
+
 app.get('/', function (req, res) {
     res.render('index', { title: 'hello from node/handlebars' });
 });
 
-app.listen(port, function (err) {
-    console.log('running on ' + port);
-});
+var router = express.Router();
+app.use('/test', router);
+
+router.route('')
+    .get(function (req, res) {
+        res.send('test');
+    });
+
+router.route('/sub')
+    .get(function (req, res) {
+        res.send('sub test');
+    });
