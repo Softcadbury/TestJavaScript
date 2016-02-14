@@ -16,19 +16,8 @@ app.listen(port, function (err) {
     console.log('running on ' + port);
 });
 
-app.get('/', function (req, res) {
-    res.render('index', { title: 'hello from node/handlebars' });
-});
+var indexRouter = require('./server/routes/indexRouter');
+app.use('/', indexRouter);
 
-var router = express.Router();
-app.use('/test', router);
-
-router.route('')
-    .get(function (req, res) {
-        res.send('test');
-    });
-
-router.route('/sub')
-    .get(function (req, res) {
-        res.send('sub test');
-    });
+var testRouter = require('./server/routes/testRouter');
+app.use('/test', testRouter);
