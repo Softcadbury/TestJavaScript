@@ -1,11 +1,11 @@
-/* global process */
 'use strict';
 
+var config = require('./config/config');
 var express = require('express');
 var handlebars = require('express-handlebars');
 
 var app = express();
-var port = process.env.PORT || 5000;
+var port = config.port;
 
 app.use(express.static('public'));
 app.set('views', 'views');
