@@ -21,3 +21,6 @@ app.use('/', indexRouter);
 
 var testRouter = require('./server/routes/testRouter');
 app.use('/test', testRouter);
+
+var userRouter = require('./server/routes/userRouter');
+app.use('/users', userRouter);
