@@ -3,7 +3,9 @@
 var gulp = require('gulp');
 var jshint = require('gulp-jshint'); // Check some coding rules
 var jscs = require('gulp-jscs'); // Check some coding rules
-var nodemon = require('gulp-nodemon');
+var wiredep = require('wiredep').stream; // Wire Bower dependencies
+var inject = require('gulp-inject'); // Inject file references into views
+var nodemon = require('gulp-nodemon'); // Start the node application
 
 var jsFiles = ['./public/js/*.js', './*.js'];
 
@@ -18,9 +20,6 @@ gulp.task('check', function () {
 
 // Inject bower packages in views
 gulp.task('inject', function () {
-    var wiredep = require('wiredep').stream;
-    var inject = require('gulp-inject');
-
     var wiredepOptions = {
         bowerJson: require('./bower.json'),
         directory: './public/lib',
@@ -28,7 +27,6 @@ gulp.task('inject', function () {
     };
 
     var injectSrc = gulp.src(['./public/css/*.css', './public/js/*.js'], { read: false });
-
     var injectOptions = {
         ignorePath: '/public'
     };
@@ -39,7 +37,7 @@ gulp.task('inject', function () {
         .pipe(gulp.dest('./views'));
 });
 
-// Start the node server after each file modification
+// Start the node server and restart it after each js file modification
 gulp.task('serve', ['check', 'inject'], function () {
     var options = {
         script: 'server.js',

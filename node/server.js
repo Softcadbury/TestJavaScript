@@ -3,24 +3,22 @@
 var config = require('./config/config');
 var express = require('express');
 var handlebars = require('express-handlebars');
-
 var app = express();
-var port = config.port;
 
 app.use(express.static('public'));
 app.set('views', 'views');
 app.engine('.hbs', handlebars({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
 
-app.listen(port, function (err) {
-    console.log('running on ' + port);
+app.listen(config.port, function (err) {
+    console.log('running on ' + config.port);
 });
 
-var indexRouter = require('./server/routes/indexRouter');
-app.use('/', indexRouter);
+var indexRoutes = require('./server/routes/indexRoutes');
+app.use('/', indexRoutes);
 
-var testRouter = require('./server/routes/testRouter');
-app.use('/test', testRouter);
+var testRoutes = require('./server/routes/testRoutes');
+app.use('/test', testRoutes);
 
-var userRouter = require('./server/routes/userRouter');
-app.use('/users', userRouter);
+var userRoutes = require('./server/routes/userRoutes');
+app.use('/users', userRoutes);
