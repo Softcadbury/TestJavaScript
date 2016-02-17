@@ -5,6 +5,17 @@ var express = require('express');
 var router = express.Router();
 var mongodb = require('mongodb').MongoClient;
 
+router.route('/')
+    .get(function (req, res) {
+        mongodb.connect(config.mongodbUrl, function (err, db) {
+            var collection = db.collection('users');
+            collection.find({}).toArray(function (err, results) {
+                res.send(results);
+                db.close();
+            });
+        });
+    });
+
 router.route('/addUser')
     .get(function (req, res) {
         mongodb.connect(config.mongodbUrl, function (err, db) {
