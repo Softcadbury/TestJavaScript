@@ -2,11 +2,14 @@
 
 var config = require('./config/config');
 var express = require('express');
+var bodyParser = require('body-parser');
 var handlebars = require('express-handlebars');
 var app = express();
 
 // Middlewares configuration
 app.use(express.static('public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 
 // Handlebars configuration
 app.set('views', 'views');
@@ -27,3 +30,6 @@ app.use('/test', testRoutes);
 
 var userRoutes = require('./server/routes/userRoutes');
 app.use('/users', userRoutes);
+
+var userRoutes = require('./server/routes/authRoutes');
+app.use('/auth', userRoutes);
