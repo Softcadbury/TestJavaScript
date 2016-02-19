@@ -4,9 +4,9 @@ var config = require('../../config/config');
 var express = require('express');
 var router = express.Router();
 
-router.route('/createAccount')
+router.route('/create')
     .get(function (req, res) {
-        res.render('createAccount', { title: 'create an account' });
+        res.render('account/create', { title: 'create an account' });
     })
     .post(function (req, res) {
         console.log(req.body);

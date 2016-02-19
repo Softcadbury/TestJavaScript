@@ -31,5 +31,5 @@ app.use('/test', testRoutes);
 var userRoutes = require('./server/routes/userRoutes');
 app.use('/users', userRoutes);
 
-var userRoutes = require('./server/routes/authRoutes');
-app.use('/auth', userRoutes);
+var userRoutes = require('./server/routes/accountRoutes');
+app.use('/account', userRoutes);
