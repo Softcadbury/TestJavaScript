@@ -7,11 +7,9 @@ var wiredep = require('wiredep').stream; // Wire Bower dependencies
 var inject = require('gulp-inject'); // Inject file references into views
 var nodemon = require('gulp-nodemon'); // Start the node application
 
-var jsFiles = ['./public/js/*.js', './*.js'];
-
 // Check coding rules
 gulp.task('check', function () {
-    gulp.src(jsFiles)
+    gulp.src(['./*.js', './server/*.js', './public/js/*.js'])
         .pipe(jscs())
         .pipe(jscs.reporter())
         .pipe(jshint())
@@ -45,7 +43,7 @@ gulp.task('serve', ['check', 'inject'], function () {
         env: {
             'PORT': 5000
         },
-        watch: jsFiles
+        watch: ['./*.js', './server/*.js']
     };
 
     return nodemon(options).on('restart', function () {

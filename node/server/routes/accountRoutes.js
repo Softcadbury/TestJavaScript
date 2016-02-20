@@ -11,7 +11,7 @@ router.route('/register')
     .post(function (req, res) {
         console.log(req.body);
     });
-    
+
 router.route('/connect')
     .get(function (req, res) {
         res.render('account/connect');
