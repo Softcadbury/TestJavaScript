@@ -13,11 +13,11 @@ app.set('views', 'views');
 app.engine('.hbs', handlebars({ extname: '.hbs' }));
 app.set('view engine', '.hbs');
 
-// Start application listening
+// Starts application listening
 app.listen(config.port, function (err) {
     console.log('running on ' + config.port);
 });
 
-// Regsiter routes
+// Regsiters routes
 var indexRoutes = require('./routes/indexRoutes');
 app.use('/', indexRoutes);
