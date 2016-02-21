@@ -1,11 +1,35 @@
 'use strict';
 
 var gulp = require('gulp');
-var jsonfile = require('jsonfile');
-var util = require('util');
 
+// Convert csv files to json files
+gulp.task('convert', () => {
+    var Converter = require("csvtojson").Converter;
+    var converter = new Converter({ constructResult: false });
+    var result = [];
+
+    converter.on("record_parsed", (jsonObj) => {
+        result.push(jsonObj);
+    });
+
+    converter.on("end_parsed", () => {
+        var fs = require('fs');
+        fs.writeFile('./data/PremierLeague/2014-2015.json', JSON.stringify(result), function (err) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('File created');
+            }
+        });
+    });
+
+    require("request").get("http://www.football-data.co.uk/mmz4281/1415/E0.csv").pipe(converter);
+});
+
+// Read csv files
 gulp.task('read', () => {
-    var file = './PL-2014-2015.json';
+    var jsonfile = require('jsonfile');
+    var file = './data/PremierLeague/2014-2015.json';
 
     jsonfile.readFile(file, (err, obj) => {
         var teams = {};
