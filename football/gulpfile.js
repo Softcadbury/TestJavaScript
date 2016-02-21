@@ -1,34 +1,16 @@
 'use strict';
 
 var gulp = require('gulp');
+var updater = require('./server/utils/updater');
 
 // Updates the current data
 gulp.task('update', () => {
-    var Converter = require("csvtojson").Converter;
-    var converter = new Converter({ constructResult: false });
-    var result = [];
-
-    converter.on("record_parsed", (jsonObj) => {
-        result.push(jsonObj);
-    });
-
-    converter.on("end_parsed", () => {
-        var fs = require('fs');
-        fs.writeFile('./data/PremierLeague/2014-2015.json', JSON.stringify(result), function (err) {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log('File created');
-            }
-        });
-    });
-
-    require("request").get("http://www.football-data.co.uk/mmz4281/1415/E0.csv").pipe(converter);
+    updater.updateData('http://www.football-data.co.uk/mmz4281/1516/E0.csv', 'PremierLeague/2015-2016');
 });
 
 // Updates all data
-gulp.task('updateall', () => {
-
+gulp.task('updateall', ['update'], () => {
+    updater.updateData('http://www.football-data.co.uk/mmz4281/1415/E0.csv', 'PremierLeague/2014-2015');
 });
 
 // Parses data
