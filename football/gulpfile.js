@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
+var nodemon = require('gulp-nodemon');
 var updater = require('./server/utils/updater');
 
 // Updates the current data
@@ -85,3 +86,19 @@ function createTeamObject() {
 function getTeamScore(team) {
     return team.win * 3 + team.draw
 }
+
+// Start the node server
+gulp.task('start', function () {
+    var options = {
+        script: 'server/app.js',
+        delayTime: 1,
+        env: {
+            'PORT': 5000
+        },
+        watch: ['./*.js', './server/*.js']
+    };
+
+    return nodemon(options).on('restart', function () {
+        console.log('Restarting...');
+    });
+});
