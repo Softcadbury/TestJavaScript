@@ -2,8 +2,8 @@
 
 var gulp = require('gulp');
 
-// Convert csv files to json files
-gulp.task('convert', () => {
+// Updates the current data
+gulp.task('update', () => {
     var Converter = require("csvtojson").Converter;
     var converter = new Converter({ constructResult: false });
     var result = [];
@@ -26,8 +26,13 @@ gulp.task('convert', () => {
     require("request").get("http://www.football-data.co.uk/mmz4281/1415/E0.csv").pipe(converter);
 });
 
-// Read csv files
-gulp.task('read', () => {
+// Updates all data
+gulp.task('updateall', () => {
+
+});
+
+// Parses data
+gulp.task('parse', () => {
     var jsonfile = require('jsonfile');
     var file = './data/PremierLeague/2014-2015.json';
 
@@ -35,46 +40,66 @@ gulp.task('read', () => {
         var teams = {};
 
         for (var i = 0; i < obj.length; i++) {
-            var homeTeam = obj[i].HomeTeam;
-            var awayTeam = obj[i].AwayTeam;
+            var homeTeamName = obj[i].HomeTeam;
+            var awayTeamName = obj[i].AwayTeam;
             var homeTeamGoals = obj[i].FTHG;
             var awayTeamGoals = obj[i].FTAG;
             var result = obj[i].FTR;
 
             // Home team
-            if (!teams.hasOwnProperty(homeTeam)) {
-                teams[homeTeam] = createTeamObject();
+            if (!teams.hasOwnProperty(homeTeamName)) {
+                teams[homeTeamName] = createTeamObject();
+                teams[homeTeamName].name = homeTeamName;
             }
 
-            teams[homeTeam].win += result == 'H' ? 1 : 0;
-            teams[homeTeam].draw += result == 'D' ? 1 : 0;
-            teams[homeTeam].lost += result == 'A' ? 1 : 0;
-            teams[homeTeam].goalsFor += homeTeamGoals;
-            teams[homeTeam].goalsAgainst += awayTeamGoals;
+            var homeTeam = teams[homeTeamName];
+            homeTeam.win += result == 'H' ? 1 : 0;
+            homeTeam.draw += result == 'D' ? 1 : 0;
+            homeTeam.lost += result == 'A' ? 1 : 0;
+            homeTeam.goalsFor += homeTeamGoals;
+            homeTeam.goalsAgainst += awayTeamGoals;
 
             // Away team
-            if (!teams.hasOwnProperty(awayTeam)) {
-                teams[awayTeam] = createTeamObject();
+            if (!teams.hasOwnProperty(awayTeamName)) {
+                teams[awayTeamName] = createTeamObject();
+                teams[awayTeamName].name = awayTeamName;
             }
 
-            teams[awayTeam].win += result == 'A' ? 1 : 0;
-            teams[awayTeam].draw += result == 'D' ? 1 : 0;
-            teams[awayTeam].lost += result == 'H' ? 1 : 0;
-            teams[awayTeam].goalsFor += awayTeamGoals;
-            teams[awayTeam].goalsAgainst += homeTeamGoals;
+            var awayTeam = teams[awayTeamName];
+            awayTeam.win += result == 'A' ? 1 : 0;
+            awayTeam.draw += result == 'D' ? 1 : 0;
+            awayTeam.lost += result == 'H' ? 1 : 0;
+            awayTeam.goalsFor += awayTeamGoals;
+            awayTeam.goalsAgainst += homeTeamGoals;
         }
 
-        console.log(teams);
+        // Add score to teams and format them in an array
+        var formatedTeams = [];
+        for (var team in teams) {
+            teams[team].score = getTeamScore(teams[team]);
+            formatedTeams.push(teams[team]);
+        }
+
+        console.log(formatedTeams.sort((t1, t2) => {
+            return t2.score - t1.score;
+        }));
     })
 });
 
-// Create team object
+// Creates a team object
 function createTeamObject() {
     return {
+        name: '',
+        score: 0,
         win: 0,
         draw: 0,
         lost: 0,
         goalsFor: 0,
         goalsAgainst: 0
     };
+}
+
+// Gets the score of a team
+function getTeamScore(team) {
+    return team.win * 3 + team.draw
 }
