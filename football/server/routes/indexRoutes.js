@@ -6,7 +6,7 @@ var router = express.Router();
 router.route('')
     .get(function (req, res) {
         var jsonfile = require('jsonfile');
-        var file = './data/PremierLeague/2014-2015.json';
+        var file = './data/England/2014-2015.json';
         var sortedTeams;
 
         jsonfile.readFile(file, (err, obj) => {

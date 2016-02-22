@@ -4,14 +4,14 @@ var gulp = require('gulp');
 var nodemon = require('gulp-nodemon');
 var updater = require('./server/utils/updater');
 
-// Updates the current data
+// Updates data of current year
 gulp.task('update', () => {
-    updater.updateData('http://www.football-data.co.uk/mmz4281/1516/E0.csv', 'PremierLeague/2015-2016');
+    updater.update();
 });
 
-// Updates all data
+// Updates data of old years
 gulp.task('updateall', ['update'], () => {
-    updater.updateData('http://www.football-data.co.uk/mmz4281/1415/E0.csv', 'PremierLeague/2014-2015');
+    updater.updateAll();
 });
 
 // Start the node server
