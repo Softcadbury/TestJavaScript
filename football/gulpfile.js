@@ -6,7 +6,7 @@ var updater = require('./server/utils/updater');
 
 // Updates data of current year
 gulp.task('update', () => {
-    updater.update();
+    updater.updateCurrent();
 });
 
 // Updates data of old years
