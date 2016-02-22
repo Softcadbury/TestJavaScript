@@ -48,13 +48,13 @@ function getPeriodCode(year) {
     return part1 + part2;
 }
 
-// Updates a file with data from an url
+// Updates the data of a country by period
 function updateData(country, countryCode, period, periodCode) {
     var converter = new Converter({ constructResult: false });
     var result = [];
 
-    converter.on('record_parsed', (jsonObj) => {
-        result.push(jsonObj);
+    converter.on('record_parsed', (jsonObject) => {
+        result.push(cleanJsonObject(jsonObject));
     });
 
     converter.on('end_parsed', () => {
@@ -72,9 +72,22 @@ function updateData(country, countryCode, period, periodCode) {
     require('request').get(url).pipe(converter);
 }
 
-// Gets the url to get the data
+// Gets the url to get the data for a period and a country 
 function getUrl(periodCode, countryCode) {
     return footballDataUrl.replace('{0}', periodCode).replace('{1}', countryCode);
+}
+
+// Clean the json object of undesirable properties
+function cleanJsonObject(jsonObject) {
+    var propertiesToKeep = ['Date', 'HomeTeam', 'AwayTeam', 'FTHG', 'FTAG', 'FTR'];
+
+    for (var property in jsonObject) {
+        if (propertiesToKeep.indexOf(property) == -1) {
+            delete jsonObject[property];
+        }
+    }
+
+    return jsonObject;
 }
 
 module.exports = {
